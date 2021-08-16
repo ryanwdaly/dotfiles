@@ -1,12 +1,19 @@
 syntax enable
 set number
-set hlsearch
+set relativenumber
+set nohlsearch
+set hidden
+set noerrorbells
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set nowrap
 set incsearch
-set nocp
-set autoindent
-set tabstop=4 shiftwidth=4 expandtab
+set scrolloff=8
 set smartcase
-set autoread
+set autoindent
+
 setlocal spelllang=en_us
 
 " Commands
@@ -16,48 +23,71 @@ command! Config execute ":e $MYVIMRC"
 " Plugins
 " -----------------------------------------------------------------------------
 
-" Specify a directory for plugins.
 call plug#begin('~/.vim/plugged')
 
-" Make sure you use single quotes
+    " Basics
+    Plug 'suan/vim-instant-markdown', {'rtp': 'after'}  " Markdown Preview
+    Plug 'frazrepo/vim-rainbow'                         " Multi color ()'s  
 
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
+    " Syntax
+    Plug 'HerringtonDarkholme/yats.vim'                 " Typescript 
+    Plug 'maxmellon/vim-jsx-pretty'                     " React/JSX 
+    Plug 'ap/vim-css-color'                             " Color previews for CSS
 
-" Any valid git URL is allowed
-Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+    " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+    Plug 'junegunn/vim-easy-align'
+    Plug 'junegunn/vim-emoji'                           " Vim emojis
 
-" Multiple Plug commands can be written in a single line using | separators
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    " Productivity
+    Plug 'vimwiki/vimwiki'                              " VimWiki 
+    
+    " Dim paragraphs above and below the active paragraph.
+    Plug 'junegunn/limelight.vim'
 
-" On-demand loading
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+    " Distraction free writing by removing UI elements and centering everything.
+    Plug 'junegunn/goyo.vim'
 
-" Using a non-default branch
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+    " Any valid git URL is allowed
+    Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
-" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-Plug 'fatih/vim-go', { 'tag': '*' }
+    " Multiple Plug commands can be written in a single line using | separators
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-" Plugin options
-Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+    " On-demand loading
+    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+    Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
-" Plugin outside ~/.vim/plugged with post-update hook
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    " Using a non-default branch
+    Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 
-" Unmanaged plugin (manually installed and updated)
-Plug '~/my-prototype-plugin'
+    " Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
+    Plug 'fatih/vim-go', { 'tag': '*' }
 
-" Initialize plugin system
-call plug#end()
+    " Plugin options
+    Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
 
-" Language and file types.
-Plug 'godlygeek/tabular' | Plug 'tpope/vim-markdown'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
+    " Plugin outside ~/.vim/plugged with post-update hook
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-" Dim paragraphs above and below the active paragraph.
-Plug 'junegunn/limelight.vim'
+    " Unmanaged plugin (manually installed and updated)
+    Plug '~/my-prototype-plugin'
 
-" Distraction free writing by removing UI elements and centering everything.
-Plug 'junegunn/goyo.vim'
+    " Create file system explorer
+    Plug 'preservim/nerdtree'
+
+    " Gruvbox theme
+    Plug 'morhetz/gruvbox'
+
+call  plug#end()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim-Instant-Markdown
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:instant_markdown_browser = "chromium-browser"      " Uses chromium for preview
+
+" Color Scheme
+
+set termguicolors
+set background=dark
+let g:gruvbox_contrast_dark='hard'
+colorscheme gruvbox
