@@ -1,0 +1,12 @@
+ death[geometry]
+posx=1720
+posy=0
+sizex=1718
+sizey=1414
+
+[nitrogen]
+view=icon
+recurse=true
+sort=alpha
+icon_caps=false
+dirs=

@@ -1,0 +1,78 @@
+# Qtile keybindings
+
+from libqtile.config import Key 
+from libqtile.command import lazy
+
+## Constants
+mod = "mod4"
+terminal = "alacritty"
+
+## Hotkeys
+keys = [
+     ### The essentials
+     Key([mod], "d",
+         lazy.spawn("dmenu_run -p 'Run:'"),
+         desc='Run Launcher'
+         ),
+     Key([mod, "shift"], "Return",
+         lazy.spawn("chromium-browser"),
+         desc='Run Chromium Browser'
+         ),
+     Key([mod], "w",
+         lazy.window.kill(),
+         desc='Kill Window'
+         ),
+     Key([mod], "Return",
+         lazy.spawn(terminal),
+         desc='Launch Terminal'
+         ),
+
+     ### Apps 
+     Key([mod], "r",
+         lazy.spawn("ranger"),
+         desc='Launch Ranger'
+         ),
+
+     ### Switch focus of monitors
+     Key([mod], "period",
+                 lazy.next_screen(),
+                 desc='Move focus to next monitor'
+                 ),
+         Key([mod], "comma",
+         lazy.prev_screen(),
+         desc='Move focus to prev monitor'
+         ),
+
+     ### Move windows up or down in current stack
+     Key([mod], "j",
+         lazy.layout.down()),
+     Key([mod], "k",
+         lazy.layout.up()),
+     Key([mod], "h",
+         lazy.layout.left()),
+     Key([mod], "l",
+         lazy.layout.right()),
+
+     ### Change window size
+     Key([mod], "i",
+         lazy.layout.grow()),
+     Key([mod], "u",
+         lazy.layout.shrink()),
+
+     ### Switch window focus to other pane(s) of stack
+     Key([mod], "Tab",
+         lazy.layout.next()),
+
+     ### Swap panes of split stack
+         Key([mod, "shift"], "space",
+         lazy.layout.rotate()),
+
+     ### Toggle between different layouts as defined below
+     Key([mod, "shift"], "l",
+         lazy.next_layout()),
+
+     Key([mod, "control"], "r",
+         lazy.restart()),
+     Key([mod, "control"], "q",
+         lazy.shutdown()),
+]
