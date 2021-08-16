@@ -17,7 +17,7 @@ command! Config execute ":e $MYVIMRC"
 " -----------------------------------------------------------------------------
 
 " Specify a directory for plugins.
-call plug#begin('~/dotfiles/.vim/plugged')
+call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
 
