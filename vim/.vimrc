@@ -22,7 +22,7 @@ command! Config execute ":e $MYVIMRC"
 " -----------------------------------------------------------------------------
 " Plugins
 " -----------------------------------------------------------------------------
-
+" delete this line
 filetype plugin on
 
 call plug#begin('~/.vim/plugged')
