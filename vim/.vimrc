@@ -8,11 +8,11 @@ set tabstop=4 softtabstop=4
 set shiftwidth=4
 set expandtab
 set smartindent
-set nowrap
 set incsearch
 set scrolloff=8
 set smartcase
 set autoindent
+set nocompatible
 
 setlocal spelllang=en_us
 
@@ -35,28 +35,27 @@ call plug#begin('~/.vim/plugged')
     Plug 'HerringtonDarkholme/yats.vim'                 " Typescript 
     Plug 'maxmellon/vim-jsx-pretty'                     " React/JSX 
     Plug 'ap/vim-css-color'                             " Color previews for CSS
-
-    " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}     " Intellisense
+    " Junegunn
     Plug 'junegunn/vim-easy-align'
     Plug 'junegunn/vim-emoji'                           " Vim emojis
+    Plug 'junegunn/limelight.vim'                       " Dim paragraphs above and below the active paragraph.
+    Plug 'junegunn/goyo.vim'                            " Remove ui elements
+    Plug 'https://github.com/junegunn/vim-github-dashboard.git'         " Any valid git URL is allowed
+    Plug 'junegunn/fzf'                                 " Interactive command line filter
+    Plug 'junegunn/fzf.vim'
 
     " Productivity
-    Plug 'vimwiki/vimwiki'                              " VimWiki 
-    
-    " Dim paragraphs above and below the active paragraph.
-    Plug 'junegunn/limelight.vim'
+    Plug 'vimwiki/vimwiki'     
+    Plug 'michal-h21/vim-zettel'
 
-    " Distraction free writing by removing UI elements and centering everything.
-    Plug 'junegunn/goyo.vim'
-
-    " Any valid git URL is allowed
-    Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+    " File System Plugins
+    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
     " Multiple Plug commands can be written in a single line using | separators
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
     " On-demand loading
-    Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
     Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
     " Using a non-default branch
@@ -67,9 +66,6 @@ call plug#begin('~/.vim/plugged')
 
     " Plugin options
     Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-
-    " Plugin outside ~/.vim/plugged with post-update hook
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
     " Unmanaged plugin (manually installed and updated)
     Plug '~/my-prototype-plugin'
@@ -83,11 +79,22 @@ call plug#begin('~/.vim/plugged')
 call  plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim-Instant-Markdown
+" Settings 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Color Scheme
+" Vimwiki
+let g:vimwiki_list = [{'path':'~/scratchbox/vimwiki/markdown/','ext':'.md', 'syntax':'markdown'}, {"path":"~/scratchbox/vimwiki/wiki/"}] " For vim zettel
 
+" Vim Zettel
+let g:zettel_options = [{"template" : "~/.vim/templates/zettel-template.tpl"}]
+"g:zettel_format|
+"g:zettel_default_mappings|
+"g:zettel_fzf_command|
+"g:zettel_fzf_options|
+"g:zettel_backlinks_title|
+
+
+" Color Scheme
 set termguicolors
 set background=dark
 let g:gruvbox_contrast_dark='hard'
