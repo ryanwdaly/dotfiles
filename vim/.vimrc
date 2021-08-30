@@ -47,9 +47,9 @@ call plug#begin('~/.vim/plugged')
 
     " Productivity
     Plug 'vimwiki/vimwiki'     
-    Plug 'michal-h21/vim-zettel'
+    Plug 'fiatjaf/neuron.vim'
 
-    " File System Plugins
+    " Search tools 
     Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
     " Multiple Plug commands can be written in a single line using | separators
@@ -78,23 +78,23 @@ call plug#begin('~/.vim/plugged')
 
 call  plug#end()
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Settings 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"==============================================================="
+" VimWiki
+"==============================================================="
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                    \ 'syntax': 'markdown', 'ext': '.md'}]
 
-" Vimwiki
-let g:vimwiki_list = [{'path':'~/scratchbox/vimwiki/markdown/','ext':'.md', 'syntax':'markdown'}, {"path":"~/scratchbox/vimwiki/wiki/"}] " For vim zettel
+" Vimwiki Zettel Template
+au BufNewFile ~/vimwiki/zettels/*.md :silent 0r !~/.vim/bin/zettel-template '%'
 
-" Vim Zettel
-let g:zettel_options = [{"template" : "~/.vim/templates/zettel-template.tpl"}]
-"g:zettel_format|
-"g:zettel_default_mappings|
-"g:zettel_fzf_command|
-"g:zettel_fzf_options|
-"g:zettel_backlinks_title|
+"==============================================================="
+" Neuron
+"==============================================================="
+let g:neuron_dir = '~/zettelkasten/'
+"==============================================================="
+" Theme
+"==============================================================="
 
-
-" Color Scheme
 set termguicolors
 set background=dark
 let g:gruvbox_contrast_dark='hard'
